@@ -9,6 +9,7 @@ import io.oasp.gastronomy.restaurant.offermanagement.common.api.WeeklyPeriod;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -25,7 +26,6 @@ public class SpecialEntity extends ApplicationPersistenceEntity implements Speci
 
   private OfferEntity offer;
 
-  @Embedded
   private WeeklyPeriodEmbeddable activePeriod;
 
   private Money specialPrice;
@@ -60,6 +60,7 @@ public class SpecialEntity extends ApplicationPersistenceEntity implements Speci
    *
    * @return offer {@link Offer} this special applies for.
    */
+  @ManyToOne
   public OfferEntity getOffer() {
 
     return this.offer;
@@ -81,6 +82,7 @@ public class SpecialEntity extends ApplicationPersistenceEntity implements Speci
    * @return activePeriod the {@link WeeklyPeriodEmbeddable active period} this special applies for.
    */
   @Override
+  @Embedded
   public WeeklyPeriod getActivePeriod() {
 
     return this.activePeriod;
